@@ -10,8 +10,9 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-<header class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 py-4 bg-yellow-300">
+  <header class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 py-4 bg-yellow-300">
   <h2 class="text-2xl font-extrabold text-purple-900">हिंदी पाठशाला</h2>
+
   <nav class="mt-2 md:mt-0 space-x-6 font-semibold">
     <a href="index.html" class="hover:text-purple-900">Home</a>
     <a href="about.html" class="hover:text-purple-900">About</a>
@@ -35,18 +36,18 @@
   <h1 class="text-4xl font-extrabold text-orange-600">About Us</h1>
 </section>
 
-<section class="py-14 px-6">
+<section class="py-5 px-6">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
-    <img src="namita-mishra.jpg" class="w-72 h-72 rounded-full object-cover border-[20px] border-yellow-300 shadow" />
+    <img src="images/namita.jpg" class="w-72 h-73 rounded-full object-cover border-[2px]shadow" />
     <div>
       <h1 class="text-3xl font-bold">Namita Mishra</h1>
       <h3 class="text-lg font-semibold">Hindi & Sanskrit Educator</h3>
 
-      <div class="flex flex-wrap gap-4 my-6">
-        <div class="bg-yellow-300 p-3 rounded text-center min-w-[110px]"><h2 class="font-bold text-red-600">25+</h2><p class="text-sm">Years Experience</p></div>
-        <div class="bg-yellow-300 p-3 rounded text-center min-w-[110px]"><h2 class="font-bold text-red-600">4+</h2><p class="text-sm">Boards Taught</p></div>
-        <div class="bg-yellow-300 p-3 rounded text-center min-w-[110px]"><h2 class="font-bold text-red-600">International</h2><p class="text-sm">Exposure</p></div>
-        <div class="bg-yellow-300 p-3 rounded text-center min-w-[110px]"><h2 class="font-bold text-red-600">Awarded</h2><p class="text-sm">Educator</p></div>
+      <div class="flex flex-wrap gap-4 my-12">
+        <div class="bg-yellow-300 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-red-600">25+</h2><p class="text-sm">Years Experience</p></div>
+        <div class="bg-yellow-300 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-red-600">4+</h2><p class="text-sm">Boards Taught</p></div>
+        <div class="bg-yellow-300 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-red-600">International</h2><p class="text-sm">Exposure</p></div>
+        <div class="bg-yellow-300 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-red-600">Awarded</h2><p class="text-sm">Educator</p></div>
       </div>
 
       <p class="mb-3">Namita Mishra is a dedicated educator with 25+ years experience across India and Malaysia.</p>
@@ -72,7 +73,7 @@
       </div>
     </div>
 
-    <img src="images/about-bg.jpg" class="w-full md:w-[450px] rounded-2xl shadow" />
+    <img src="images/about2-bg.jpg" class="w-full md:w-[450px] rounded-2xl shadow" />
   </div>
 </section>
 
@@ -83,24 +84,66 @@
   <p class="mt-2">Interactive & Skill-Based Learning</p>
 </section>
 
-<section class="py-16 px-6 flex flex-wrap justify-center gap-8">
-  <div class="bg-white w-72 p-6 rounded-2xl shadow hover:-translate-y-2 transition">
-    <h3 class="text-xl font-bold text-purple-900 mb-2">CBSE</h3>
-    <p>Hindi & Sanskrit classes</p>
-    <ul class="mt-3 space-y-1 text-sm">
+<section class="py-16 px-6 flex flex-wrap justify-center gap-8 bg-[url('images/course-bg.jpg')] bg-cover bg-center">
+  <div class="flex gap-8 flex-wrap justify-center">
+
+  <!-- CBSE Card -->
+  <div class="relative w-72 p-6 rounded-2xl text-white 
+              bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400
+              shadow-lg transform transition duration-500
+              hover:-translate-y-2 hover:shadow-2xl">
+
+    <h3 class="text-2xl font-bold mb-2 tracking-wide">CBSE</h3>
+    <p class="opacity-90">Hindi & Sanskrit Classes</p>
+
+    <ul class="mt-4 space-y-1 text-sm">
       <li>✔ 6th to 12th</li>
+      <li>✔ Concept Learning</li>
+      <li>✔ Regular Tests</li>
     </ul>
-    <a href="contact.html" class="inline-block mt-4 px-4 py-2 bg-yellow-400 rounded-full font-bold">Enroll Now</a>
+
+    <button onclick="enrollClick(this)" 
+      class="enrollBtn inline-block mt-5 px-5 py-2 bg-white text-orange-600 
+             rounded-full font-semibold shadow transition">
+      Enroll Now
+    </button>
   </div>
 
-  <div class="bg-white w-72 p-6 rounded-2xl shadow hover:-translate-y-2 transition">
-    <h3 class="text-xl font-bold text-purple-900 mb-2">ICSE</h3>
-    <p>Hindi & Sanskrit classes</p>
-    <ul class="mt-3 space-y-1 text-sm">
+
+  <!-- ICSE Card -->
+  <div class="relative w-72 p-6 rounded-2xl text-white 
+              bg-gradient-to-br from-indigo-900 via-blue-800 to-blue-600
+              shadow-lg transform transition duration-500
+              hover:-translate-y-2 hover:shadow-2xl">
+
+    <h3 class="text-2xl font-bold mb-2 tracking-wide">ICSE</h3>
+    <p class="opacity-90">Hindi & Sanskrit Classes</p>
+
+    <ul class="mt-4 space-y-1 text-sm">
       <li>✔ 6th to 12th</li>
+      <li>✔ Grammar Focus</li>
+      <li>✔ Writing Skills</li>
     </ul>
-    <a href="contact.html" class="inline-block mt-4 px-4 py-2 bg-yellow-400 rounded-full font-bold">Enroll Now</a>
+
+    <button onclick="enrollClick(this)" 
+      class="enrollBtn inline-block mt-5 px-5 py-2 bg-white text-blue-800 
+             rounded-full font-semibold shadow transition">
+      Enroll Now
+    </button>
   </div>
+
+</div>
+
+<!-- Popup -->
+<div id="enrollPopup"
+     class="fixed bottom-8 left-1/2 -translate-x-1/2 
+            bg-gradient-to-r from-orange-500 to-yellow-400
+            text-white px-6 py-3 rounded-full shadow-xl
+            opacity-0 pointer-events-none
+            transition duration-500">
+  ✔ Enrollment Page Opening...
+</div>
+<script src="script.js"></script>
 </section>
 
 <!-- contact page section -->
