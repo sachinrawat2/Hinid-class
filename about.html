@@ -7,10 +7,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
   <style>body{font-family:'Baloo 2',cursive}</style>
+  
+  <!-- popup animation-->
+  <style>
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+</style>
+
 </head>
 <body class="bg-white text-gray-800">
 
-  <header class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 py-4 bg-yellow-300">
+  <header class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 py-4 bg-yellow-400">
   <h2 class="text-2xl font-extrabold text-purple-900">हिंदी पाठशाला</h2>
 
   <nav class="mt-2 md:mt-0 space-x-6 font-semibold">
@@ -21,23 +31,61 @@
   </nav>
 </header>
 
-<section class="text-center py-10">
+<section class="text-center py-10 bg-[#fff4cc]">
   <h1 class="text-4xl font-extrabold text-orange-600">About Us</h1>
 </section>
 
-<section class="py-5 px-6 bg-[url('images/.jpg')] bg-cover bg-center">
+<section class="py-5 px-6 bg-[url('images/about-bg.jpg')] bg-cover bg-center">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
-    <img src="images/namita.jpg" class="w-72 h-50 rounded-full object-cover border-[2px] shadow" />
+    <img src="images/namita.jpg" class="w-72 h-50 rounded-full object-cover border-[0px] shadow" />
     <div>
       <h1 class="text-3xl font-bold">Namita Mishra</h1>
       <h3 class="text-lg font-semibold">Hindi & Sanskrit Educator</h3>
 
       <div class="flex flex-wrap gap-4 my-12">
-        <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-white">25+</h2><p class="text-sm">Years Experience</p></div>
-        <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-white">4+</h2><p class="text-sm">Boards Taught</p></div>
-        <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-white">International</h2><p class="text-sm">Exposure</p></div>
-        <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 p-6 rounded text-center min-w-[150px]"><h2 class="font-bold text-white">Awarded</h2><p class="text-sm">Educator</p></div>
-      </div>
+
+  <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 
+              p-6 rounded text-center min-w-[150px]
+              text-white shadow-lg
+              transform transition duration-500
+              hover:-translate-y-2 hover:scale-105 hover:shadow-2xl
+              animate-[pop_0.6s_ease]">
+    <h2 class="font-bold">25+</h2>
+    <p class="text-sm">Years Experience</p>
+  </div>
+
+  <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 
+              p-6 rounded text-center min-w-[150px]
+              text-white shadow-lg
+              transform transition duration-500
+              hover:-translate-y-2 hover:scale-105 hover:shadow-2xl
+              animate-[pop_0.7s_ease]">
+    <h2 class="font-bold">4+</h2>
+    <p class="text-sm">Boards Taught</p>
+  </div>
+
+  <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 
+              p-6 rounded text-center min-w-[150px]
+              text-white shadow-lg
+              transform transition duration-500
+              hover:-translate-y-2 hover:scale-105 hover:shadow-2xl
+              animate-[pop_0.8s_ease]">
+    <h2 class="font-bold">International</h2>
+    <p class="text-sm">Exposure</p>
+  </div>
+
+  <div class="bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400 
+              p-6 rounded text-center min-w-[150px]
+              text-white shadow-lg
+              transform transition duration-500
+              hover:-translate-y-2 hover:scale-105 hover:shadow-2xl
+              animate-[pop_0.9s_ease]">
+    <h2 class="font-bold">Awarded</h2>
+    <p class="text-sm">Educator</p>
+  </div>
+
+</div>
+
 
       <p class="mb-3">Namita Mishra is a dedicated educator with 25+ years experience across India and Malaysia.</p>
       <p>She has taught CBSE, ICSE, IGCSE and UP Board and promotes academic excellence.</p>
@@ -45,7 +93,7 @@
   </div>
 </section>
 
-<section class="py-16 px-6 bg-gray-50">
+<section class="py-16 px-6 bg-[#fff4cc]">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
     <div class="max-w-xl">
       <h3 class="text-xl font-bold text-orange-600">Our Mission</h3>
@@ -62,7 +110,12 @@
       </div>
     </div>
 
-    <img src="images/about2-bg.jpg" class="w-full md:w-[450px] rounded-2xl shadow" />
+    <img src="images/about2-bg.jpg"
+class="w-full md:w-[450px] rounded-2xl shadow
+transform transition duration-500
+hover:scale-105 hover:-translate-y-2 hover:shadow-xl
+animate-[imgPop_0.6s_ease] shadow-[0_10px_30px_rgba(0,0,0,0.12)]" />
+
   </div>
 </section>
 
