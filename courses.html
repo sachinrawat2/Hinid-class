@@ -6,84 +6,290 @@
   <title>Courses - Hindi Pathshala</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap" rel="stylesheet">
-  <style>body{font-family:'Baloo 2',cursive}</style>
+  <style>
+    body { font-family: 'Baloo 2', cursive; }
+    html { scroll-behavior: smooth; }
+
+    /* ── PARALLAX ── */
+    .parallax-bg {
+      background-attachment: scroll;
+      background-position: center center;
+      background-size: cover;
+      will-change: background-position;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.from-left   { transform: translateX(-50px); }
+    .reveal.from-right  { transform: translateX(50px); }
+    .reveal.from-bottom { transform: translateY(60px); }
+    .reveal.zoom-in     { transform: scale(0.85); opacity: 0; transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.34,1.56,0.64,1); }
+    .reveal.visible     { opacity: 1; transform: translateY(0) translateX(0) scale(1); }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .course-card:nth-child(1) { transition-delay: 0.05s; }
+    .course-card:nth-child(2) { transition-delay: 0.15s; }
+    .course-card:nth-child(3) { transition-delay: 0.25s; }
+
+    .enroll-card:nth-child(1) { transition-delay: 0.1s; }
+    .enroll-card:nth-child(2) { transition-delay: 0.25s; }
+
+    /* ── ENROLL CARD SHIMMER ── */
+    @keyframes shimmerSweep {
+      0%   { left: -120%; }
+      100% { left:  200%; }
+    }
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0px);  }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes glowRing {
+      0%, 100% { box-shadow: 0 0 0 0    rgba(255,210,60,0.6), 0 8px 30px rgba(0,0,0,0.2); }
+      50%       { box-shadow: 0 0 0 10px rgba(255,210,60,0),   0 8px 30px rgba(0,0,0,0.2); }
+    }
+    @keyframes glowRingBlue {
+      0%, 100% { box-shadow: 0 0 0 0    rgba(99,102,241,0.6), 0 8px 30px rgba(0,0,0,0.2); }
+      50%       { box-shadow: 0 0 0 10px rgba(99,102,241,0),   0 8px 30px rgba(0,0,0,0.2); }
+    }
+    @keyframes topBarSlide {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+    @keyframes btnPulse {
+      0%, 100% { box-shadow: 0 0 0 0   rgba(255,255,255,0.5); }
+      50%       { box-shadow: 0 0 0 8px rgba(255,255,255,0);   }
+    }
+
+    .enroll-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease;
+    }
+    .enroll-card.orange-card {
+      animation: floatCard 3.6s ease-in-out infinite, glowRing 2.6s ease-in-out infinite;
+    }
+    .enroll-card.blue-card {
+      animation: floatCard 3.6s ease-in-out 0.5s infinite, glowRingBlue 2.6s ease-in-out 0.5s infinite;
+    }
+    .enroll-card:hover {
+      transform: translateY(-14px) scale(1.05) !important;
+      animation-play-state: paused;
+    }
+    /* shimmer sweep */
+    .enroll-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -120%;
+      width: 55%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-18deg);
+      pointer-events: none;
+    }
+    .enroll-card:hover::after {
+      animation: shimmerSweep 0.55s ease forwards;
+    }
+    /* top accent bar */
+    .enroll-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      height: 4px; width: 0%;
+      background: rgba(255,255,255,0.65);
+      border-radius: 20px 20px 0 0;
+    }
+    .enroll-card.reveal.visible::before {
+      animation: topBarSlide 0.8s ease forwards 0.3s;
+    }
+
+    .enrollBtn {
+      animation: btnPulse 2s ease-in-out infinite;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .enrollBtn:hover {
+      transform: scale(1.08);
+    }
+
+    /* popular course cards hover lift */
+    .pop-course {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .pop-course:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+  </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
+<!-- HEADER -->
 <header class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 py-4 bg-yellow-400">
   <h2 class="text-2xl font-extrabold text-purple-900">हिंदी पाठशाला</h2>
-
-  <nav class="mt-2 md:mt-0 space-x-6 font-semibold">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
+  <nav class="mt-2 md:mt-0 space-x-6 font-semibold md:mx-auto text-center">
+    <a href="index.html" class="hover:text-purple-900">Home</a>
+    <a href="about.html" class="hover:text-purple-900">About</a>
     <a href="courses.html" class="text-purple-900">Courses</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="hover:text-purple-900">Contact</a>
   </nav>
 </header>
 
+<!-- PAGE TITLE -->
 <section class="text-center py-10 bg-[#fff4cc]">
-  <h1 class="text-4xl font-extrabold text-orange-600">Our Hindi & Sanskrit Courses</h1>
-  <p class="mt-2">Interactive & Skill-Based Learning</p>
+  <h1 class="text-4xl font-extrabold text-orange-600 reveal from-bottom">Our Hindi &amp; Sanskrit Courses</h1>
+  <p class="text-[20px] mt-[10px] reveal from-bottom reveal-delay-1">Interactive &amp; Skill-Based Learning</p>
 </section>
 
+<!-- ── POPULAR COURSES ── -->
+<section class="py-16 px-6 bg-white">
+  <div class="max-w-6xl mx-auto text-center mb-10">
+    <h2 class="text-4xl font-extrabold text-purple-900 reveal from-bottom">Popular Courses</h2>
+    <p class="text-lg text-gray-700 mt-2 reveal from-bottom reveal-delay-1">Structured Hindi &amp; Sanskrit learning programs</p>
+  </div>
 
-  <section class="py-16 px-6 flex flex-wrap justify-center gap-8 
-  bg-[url('images/course-bg.jpg')] bg-cover bg-center">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden pop-course reveal from-bottom course-card">
+      <img src="images/course1.jpg" class="h-48 w-full object-cover">
+      <div class="p-6 text-left">
+        <h3 class="text-xl font-bold text-purple-900">CBSE Hindi Classes</h3>
+        <p class="text-gray-600 mt-2">Complete syllabus coverage with tests &amp; worksheets.</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="text-orange-500 font-bold">Class 6–12</span>
+          <a href="contact.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden pop-course reveal from-bottom course-card">
+      <img src="images/course2.jpg" class="h-48 w-full object-cover">
+      <div class="p-6 text-left">
+        <h3 class="text-xl font-bold text-purple-900">ICSE Hindi Classes</h3>
+        <p class="text-gray-600 mt-2">Concept clarity and exam-focused preparation.</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="text-orange-500 font-bold">Class 6–12</span>
+          <a href="contact.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-lg overflow-hidden pop-course reveal from-bottom course-card">
+      <img src="images/course3.jpg" class="h-48 w-full object-cover">
+      <div class="p-6 text-left">
+        <h3 class="text-xl font-bold text-purple-900">Sanskrit Classes</h3>
+        <p class="text-gray-600 mt-2">Grammar, translation, and literature mastery.</p>
+        <div class="flex justify-between items-center mt-4">
+          <span class="text-orange-500 font-bold">School Level</span>
+          <a href="contact.html" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── ENROLL CARDS (PARALLAX BG) ── -->
+<section id="courses-parallax"
+         class="py-16 px-6 flex flex-wrap justify-center gap-8 parallax-bg
+                bg-[url('images/course-bg.jpg')] bg-cover bg-center">
+
+  <div class="w-full text-center mb-4 reveal from-bottom">
+    <h2 class="text-3xl font-extrabold text-purple-900 drop-shadow-lg">Enroll in Your Class</h2>
+    <p class="text-black opacity-90 mt-1 text-lg">Choose your curriculum and get started today</p>
+  </div>
+
   <div class="flex gap-8 flex-wrap justify-center">
 
-  <!-- CBSE Card -->
-  <div class="relative w-72 p-6 rounded-2xl text-white 
-              bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400
-              shadow-lg transform transition duration-500
-              hover:-translate-y-2 hover:shadow-2xl">
+    <!-- CBSE Card -->
+    <div class="enroll-card orange-card w-72 p-6 text-white
+                bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-400
+                shadow-lg reveal from-left enroll-card-item">
+      <h3 class="text-2xl font-bold mb-2 tracking-wide">CBSE</h3>
+      <p class="opacity-90">Hindi &amp; Sanskrit Classes</p>
+      <ul class="mt-4 space-y-1 text-sm">
+        <li>✔ 6th to 12th</li>
+        <li>✔ Full syllabus coverage</li>
+        <li>✔ Tests &amp; worksheets</li>
+      </ul>
+      <button onclick="enrollClick(this)"
+        class="enrollBtn inline-block mt-5 px-5 py-2 bg-white text-orange-600
+               rounded-full font-semibold shadow">
+        Enroll Now
+      </button>
+    </div>
 
-    <h3 class="text-2xl font-bold mb-2 tracking-wide">CBSE</h3>
-    <p class="opacity-90">Hindi & Sanskrit Classes</p>
+    <!-- ICSE Card -->
+    <div class="enroll-card blue-card w-72 p-6 text-white
+                bg-gradient-to-br from-indigo-900 via-blue-800 to-blue-600
+                shadow-lg reveal from-right reveal-delay-1 enroll-card-item">
+      <h3 class="text-2xl font-bold mb-2 tracking-wide">ICSE</h3>
+      <p class="opacity-90">Hindi &amp; Sanskrit Classes</p>
+      <ul class="mt-4 space-y-1 text-sm">
+        <li>✔ 6th to 12th</li>
+        <li>✔ Concept-based learning</li>
+        <li>✔ Doubt clearing sessions</li>
+      </ul>
+      <button onclick="enrollClick(this)"
+        class="enrollBtn inline-block mt-5 px-5 py-2 bg-white text-blue-800
+               rounded-full font-semibold shadow">
+        Enroll Now
+      </button>
+    </div>
 
-    <ul class="mt-4 space-y-1 text-sm">
-      <li>✔ 6th to 12th</li>
-    </ul>
-
-    <button onclick="enrollClick(this)" 
-      class="enrollBtn inline-block mt-5 px-5 py-2 bg-white text-orange-600 
-             rounded-full font-semibold shadow transition">
-      Enroll Now
-    </button>
   </div>
 
-
-  <!-- ICSE Card -->
-  <div class="relative w-72 p-6 rounded-2xl text-white 
-              bg-gradient-to-br from-indigo-900 via-blue-800 to-blue-600
-              shadow-lg transform transition duration-500
-              hover:-translate-y-2 hover:shadow-2xl">
-
-    <h3 class="text-2xl font-bold mb-2 tracking-wide">ICSE</h3>
-    <p class="opacity-90">Hindi & Sanskrit Classes</p>
-
-    <ul class="mt-4 space-y-1 text-sm">
-      <li>✔ 6th to 12th</li>
-    </ul>
-
-    <button onclick="enrollClick(this)" 
-      class="enrollBtn inline-block mt-5 px-5 py-2 bg-white text-blue-800 
-             rounded-full font-semibold shadow transition">
-      Enroll Now
-    </button>
+  <!-- Popup -->
+  <div id="enrollPopup"
+       class="fixed bottom-8 left-1/2 -translate-x-1/2
+              bg-gradient-to-r from-orange-500 to-yellow-400
+              text-white px-6 py-3 rounded-full shadow-xl
+              opacity-0 pointer-events-none
+              transition duration-500">
+    ✔ Enrollment Page Opening...
   </div>
 
-</div>
-
-<!-- Popup -->
-<div id="enrollPopup"
-     class="fixed bottom-8 left-1/2 -translate-x-1/2 
-            bg-gradient-to-r from-orange-500 to-yellow-400
-            text-white px-6 py-3 rounded-full shadow-xl
-            opacity-0 pointer-events-none
-            transition duration-500">
-  ✔ Enrollment Page Opening...
-</div>
 </section>
+
 <script src="script.js"></script>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS: PARALLAX + SCROLL REVEAL
+════════════════════════════════════════════ -->
+<script>
+// ── PARALLAX ──────────────────────────────────────────────
+var coursesTop = 0;
+
+function cacheTops() {
+  var c = document.getElementById('courses-parallax');
+  if (c) coursesTop = c.getBoundingClientRect().top + window.pageYOffset;
+}
+
+function updateParallax() {
+  var s = window.pageYOffset;
+  var c = document.getElementById('courses-parallax');
+  if (c) c.style.backgroundPositionY = 'calc(50% + ' + ((s - coursesTop) * 0.3) + 'px)';
+}
+
+window.addEventListener('load',   function() { cacheTops(); updateParallax(); });
+window.addEventListener('resize', function() { cacheTops(); updateParallax(); });
+window.addEventListener('scroll', updateParallax);
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+(function () {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+})();
+</script>
+
 </body>
 </html>
