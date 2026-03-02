@@ -122,6 +122,145 @@
       transform: translateY(-8px);
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     }
+
+    /* ═══════════════════════════════════════════
+       ✨ RESPONSIVE FIXES — added below, nothing above changed
+    ════════════════════════════════════════════ */
+
+    /* prevent horizontal scroll from slide animations */
+    body { overflow-x: hidden; }
+
+    /* ── MOBILE (under 640px) ── */
+    @media (max-width: 640px) {
+
+      /* Disable parallax on mobile */
+      .parallax-bg {
+        background-attachment: scroll !important;
+        background-position: center center !important;
+      }
+
+      /* Soften slide reveals — avoids horizontal overflow */
+      .reveal.from-left,
+      .reveal.from-right {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      /* Page title */
+      h1.text-4xl { font-size: 1.7rem !important; }
+      .text-\[20px\] { font-size: 16px !important; }
+
+      /* Popular courses — single column on mobile */
+      .max-w-6xl .grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      /* Popular course card images — slightly shorter */
+      .pop-course img.h-48 {
+        height: 180px !important;
+      }
+
+      /* Enroll section — stack cards vertically, full width */
+      #courses-parallax .flex.gap-8 {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+      }
+
+      /* Enroll cards — full width on mobile */
+      .enroll-card {
+        width: 100% !important;
+        max-width: 340px !important;
+      }
+
+      /* Reduce float on mobile for performance */
+      .enroll-card.orange-card,
+      .enroll-card.blue-card {
+        animation: floatCard 4.5s ease-in-out infinite !important;
+      }
+
+      /* Enroll section padding */
+      #courses-parallax {
+        padding: 40px 16px !important;
+      }
+
+      /* Section headings */
+      #courses-parallax h2 { font-size: 1.6rem !important; }
+      #courses-parallax p  { font-size: 1rem !important; }
+
+      /* Popular courses section padding */
+      section.py-16 {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+
+      /* Nav spacing */
+      nav a {
+        font-size: 0.88rem;
+      }
+    }
+
+    /* ── TABLET (641px – 767px) ── */
+    @media (min-width: 641px) and (max-width: 767px) {
+
+      /* Popular courses — 2 columns on tablet */
+      .max-w-6xl .grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+      }
+
+      /* Third card spans full width */
+      .max-w-6xl .grid > div:last-child {
+        grid-column: 1 / -1;
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      /* Enroll cards side by side but smaller */
+      .enroll-card {
+        width: 260px !important;
+      }
+    }
+
+    /* ── MEDIUM (768px – 1023px) ── */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      /* Popular courses — 3 columns, slightly smaller padding */
+      .max-w-6xl .grid {
+        gap: 16px !important;
+      }
+
+      /* Enroll cards natural size */
+      .enroll-card {
+        width: 280px !important;
+      }
+    }
+
+    /* ── DESKTOP (1024px+) ── */
+    @media (min-width: 1024px) {
+      .enroll-card {
+        width: 288px; /* w-72 = 18rem = 288px */
+      }
+    }
+
+    /* ── Reduce motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .enroll-card,
+      .enroll-card.orange-card,
+      .enroll-card.blue-card,
+      .enrollBtn {
+        animation: none !important;
+      }
+      .reveal {
+        transition: opacity 0.4s ease !important;
+        transform: none !important;
+      }
+      .reveal.visible {
+        opacity: 1 !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -268,6 +407,8 @@ function cacheTops() {
 }
 
 function updateParallax() {
+  // Disable parallax on mobile for performance
+  if (window.innerWidth < 768) return;
   var s = window.pageYOffset;
   var c = document.getElementById('courses-parallax');
   if (c) c.style.backgroundPositionY = 'calc(50% + ' + ((s - coursesTop) * 0.3) + 'px)';

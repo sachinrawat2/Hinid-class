@@ -138,6 +138,136 @@
       letter-spacing: 0.4px;
       text-transform: uppercase;
     }
+
+    /* ═══════════════════════════════════════════
+       ✨ RESPONSIVE FIXES — added below, nothing above changed
+    ════════════════════════════════════════════ */
+
+    /* ── MOBILE: disable heavy animations for performance & reduce motion ── */
+    @media (max-width: 640px) {
+      /* Parallax off on small screens */
+      .parallax-bg {
+        background-attachment: scroll !important;
+        background-position: center center !important;
+      }
+
+      /* Softer reveal — no horizontal slide on mobile (avoids overflow) */
+      .reveal.from-left,
+      .reveal.from-right {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      /* Stat cards — smaller, full row on mobile */
+      .stat-card {
+        min-width: calc(50% - 12px);
+        flex: 1 1 calc(50% - 12px);
+        padding: 18px 14px 16px;
+        border-radius: 16px;
+      }
+      .stat-icon { font-size: 1.6rem; }
+      .stat-number { font-size: 1.5rem; }
+      .stat-label { font-size: 0.7rem; }
+
+      /* Stat card float animation — reduce on mobile */
+      .stat-card {
+        animation: floatCard 4s ease-in-out infinite;
+      }
+
+      /* About section image — smaller on mobile */
+      #about-parallax img {
+        width: 180px !important;
+        height: 180px !important;
+      }
+
+      /* Text size comfortable on mobile */
+      .text-\[20px\] { font-size: 17px !important; }
+      h1.text-3xl    { font-size: 1.5rem !important; }
+      h1.text-4xl    { font-size: 1.8rem !important; }
+
+      /* Mission section — single column */
+      .grid.sm\:grid-cols-2 {
+        grid-template-columns: 1fr !important;
+      }
+
+      /* About2 image full width on mobile */
+      img.md\:w-\[450px\] {
+        width: 100% !important;
+      }
+    }
+
+    /* ── TABLET (641px – 767px) ── */
+    @media (min-width: 641px) and (max-width: 767px) {
+      .stat-card {
+        min-width: calc(50% - 10px);
+        flex: 1 1 calc(50% - 10px);
+        padding: 20px 16px 18px;
+      }
+      .stat-number { font-size: 1.7rem; }
+
+      #about-parallax img {
+        width: 200px !important;
+        height: 200px !important;
+      }
+    }
+
+    /* ── DESKTOP (768px+): ensure stat cards stay in one row ── */
+    @media (min-width: 768px) {
+      .stat-card {
+        flex: 0 0 auto;
+        min-width: 155px;
+      }
+    }
+
+    /* ── GLOBAL: fix overflow from slide animations on small viewports ── */
+    body { overflow-x: hidden; }
+
+    /* ── Stat cards wrapper: wrap nicely on all sizes ── */
+    .stat-cards-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 2rem 0 3rem;
+      width: 100%;
+    }
+
+    /* ── Nav links: touch-friendly on mobile ── */
+    @media (max-width: 640px) {
+      nav a {
+        display: inline-block;
+        padding: 4px 2px;
+        font-size: 0.9rem;
+      }
+      nav {
+        gap: 8px;
+      }
+    }
+
+    /* ── About section inner padding on mobile ── */
+    @media (max-width: 767px) {
+      #about-parallax .max-w-6xl {
+        padding-top: 24px;
+        padding-bottom: 24px;
+      }
+      section.py-16 {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+      }
+    }
+
+    /* ── Reduce motion for users who prefer it ── */
+    @media (prefers-reduced-motion: reduce) {
+      .stat-card {
+        animation: none !important;
+      }
+      .reveal {
+        transition: opacity 0.4s ease !important;
+        transform: none !important;
+      }
+      .reveal.visible {
+        opacity: 1 !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-white text-gray-800">
@@ -167,30 +297,30 @@
       <h3 class="text-lg font-semibold text-purple-900 reveal from-left reveal-delay-1">Hindi &amp; Sanskrit Educator</h3>
 
       <!-- ✨ ANIMATED STAT CARDS -->
-      <div class="flex flex-wrap gap-5 my-12">
+      <div class="stat-cards-row">
 
         <div class="stat-card reveal zoom-in reveal-delay-1">
           <span class="stat-icon">🏆</span>
           <div class="stat-number" data-target="25" data-suffix="+">0+</div>
-          <div class="stat-label text-black">Years Experience</div>
+          <div class="stat-label">Years Experience</div>
         </div>
 
         <div class="stat-card reveal zoom-in reveal-delay-2">
           <span class="stat-icon">📚</span>
           <div class="stat-number" data-target="4" data-suffix="+">0+</div>
-          <div class="stat-label text-black">Boards Taught</div>
+          <div class="stat-label">Boards Taught</div>
         </div>
 
         <div class="stat-card reveal zoom-in reveal-delay-3">
           <span class="stat-icon">🌍</span>
           <div class="stat-number">Global</div>
-          <div class="stat-label text-black">International Exposure</div>
+          <div class="stat-label">International Exposure</div>
         </div>
 
         <div class="stat-card reveal zoom-in reveal-delay-4">
           <span class="stat-icon">🥇</span>
           <div class="stat-number">Award</div>
-          <div class="stat-label text-black">Awarded Educator</div>
+          <div class="stat-label">Awarded Educator</div>
         </div>
 
       </div>
@@ -249,6 +379,8 @@ function cacheTops() {
 }
 
 function updateParallax() {
+  // Disable parallax on mobile for performance
+  if (window.innerWidth < 768) return;
   var s = window.pageYOffset;
   var a = document.getElementById('about-parallax');
   if (a) a.style.backgroundPositionY = 'calc(50% + ' + ((s - aboutTop) * 0.3) + 'px)';
