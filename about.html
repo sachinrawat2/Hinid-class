@@ -138,13 +138,105 @@
       letter-spacing: 0.4px;
       text-transform: uppercase;
     }
+    
+    
+    /* ===== NEW FOOTER STYLES ===== */
+    .footer-main {
+      background: #0d1117;
+      background-image: url('images/course1.jpg');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .footer-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 8, 15, 0.88);
+    }
+    .footer-content { position: relative; z-index: 1; }
+
+    .footer-link {
+      display: flex; align-items: center; gap: 8px;
+      color: #b0b8c4; font-size: 0.95rem;
+      text-decoration: none; transition: color 0.25s ease, gap 0.25s ease;
+      padding: 4px 0;
+    }
+    .footer-link:hover { color: #4ade80; gap: 14px; }
+    .footer-link::before {
+      content: '»';
+      color: #4ade80;
+      font-weight: 900;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .footer-heading {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+    .footer-heading::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 40px; height: 3px;
+      background: linear-gradient(90deg, #4ade80, #f97316);
+      border-radius: 3px;
+    }
+
+    .footer-social-btn {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.05);
+    }
+    .footer-social-btn:hover {
+      border-color: #4ade80;
+      background: rgba(74,222,128,0.15);
+      transform: translateY(-3px);
+    }
+
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      color: #b0b8c4; font-size: 0.95rem; margin-bottom: 1rem;
+    }
+    .footer-contact-icon {
+      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(74,222,128,0.15); border: 1px solid rgba(74,222,128,0.3);
+    }
+
+    .footer-divider { border-color: rgba(255,255,255,0.08); }
+
+    .footer-bottom {
+      background: rgba(0,0,0,0.5);
+      position: relative; z-index: 1;
+    }
+
   </style>
 </head>
 <body class="bg-white text-gray-800">
 
 <!-- HEADER -->
-<header class="flex flex-col md:flex-row justify-between items-center px-6 md:px-10 py-4 bg-yellow-400">
-  <h2 class="text-2xl font-extrabold text-purple-900">हिंदी पाठशाला</h2>
+<header class="flex justify-between items-center px-6 md:px-10 py-2 bg-yellow-400">
+
+  <div class="flex items-center gap-3">
+
+    <img src="images/logo.png"
+         alt="Hindi Pathshala Logo"
+         class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover">
+
+    <h2 class="text-2xl md:text-3xl font-extrabold text-purple-900">
+      हिंदी पाठशाला
+    </h2>
+
+  </div>
   <nav class="mt-2 md:mt-0 space-x-6 font-semibold md:mx-auto text-center">
     <a href="index.html" class="hover:text-purple-900">Home</a>
     <a href="about.html" class="text-purple-900">About</a>
@@ -235,6 +327,134 @@
                 reveal from-right" />
   </div>
 </section>
+
+<!-- ===== NEW FOOTER / CONTACT SECTION ===== -->
+<footer class="footer-main">
+  <div class="footer-content max-w-6xl mx-auto px-6 pt-10 pb-0">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
+
+      <!-- Col 1: Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-extrabold text-lg shadow-lg">
+            ह
+          </div>
+          <h2 class="text-xl font-extrabold text-white tracking-wide">हिंदी पाठशाला</h2>
+        </div>
+        <p class="text-[#8b98a8] text-sm leading-relaxed mb-6">
+          Quality Hindi &amp; Sanskrit education for CBSE, ICSE &amp; IGCSE students. We bring language learning to life through interactive, structured, and personalized teaching.
+        </p>
+        <!-- Social Icons -->
+        <div class="flex gap-3 flex-wrap">
+          <a href="https://www.instagram.com/namita_mishra8?igsh=MWJ3a25yaWljbXlubw"target="_blank" class="footer-social-btn" title="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#E1306C" class="w-5 h-5">
+              <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5zm4.25 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zm4.75-.88a1.12 1.12 0 1 1-1.12-1.12 1.12 1.12 0 0 1 1.12 1.12z"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@hindi_pathsalaa" target="_blank" class="footer-social-btn" title="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF0000" class="w-5 h-5">
+              <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.7 3.5 12 3.5 12 3.5s-7.7 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.7.6 9.4.6 9.4.6s7.7 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.8 15.5v-7l6 3.5-6 3.5z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/me?trk=p_mwlite_feed-secondary_nav" target="_blank" class="footer-social-btn" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0077B5" class="w-5 h-5">
+              <path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5 2.5 2.5 0 0 0 4.98 3.5zM3 9h4v12H3zM14.5 9c-2.21 0-3.5 1.21-4 2.06V9H7v12h3.5v-6.2c0-1.64.31-3.23 2.34-3.23 2 0 2.03 1.87 2.03 3.33V21H18V14.4c0-3.2-.69-5.4-3.5-5.4z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/919958735101?text=Hello,%20I%20Want%20to%20Know%20About%20Your%20Courses!" target="_blank" class="footer-social-btn" title="WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#25D366" class="w-5 h-5">
+              <path d="M20.52 3.48A11.8 11.8 0 0 0 12.01 0C5.38 0 .01 5.38 0 12c0 2.12.55 4.19 1.6 6.01L0 24l6.17-1.61A11.94 11.94 0 0 0 12 24c6.63 0 12-5.38 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.8c-1.83 0-3.61-.49-5.16-1.42l-.37-.22-3.66.96.98-3.57-.24-.37A9.8 9.8 0 1 1 12 21.8zm5.39-7.33c-.29-.14-1.71-.84-1.97-.94-.26-.1-.45-.14-.64.14-.19.29-.74.94-.91 1.14-.17.19-.34.22-.63.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.12-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.51.07-.78.36-.27.29-1.03 1.01-1.03 2.46 0 1.45 1.06 2.86 1.21 3.06.14.19 2.08 3.17 5.03 4.45.7.3 1.24.48 1.67.61.7.22 1.34.19 1.85.12.56-.08 1.71-.7 1.95-1.37.24-.67.24-1.24.17-1.37-.07-.12-.26-.19-.55-.33z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Company Links -->
+      <div>
+        <h3 class="footer-heading">Company</h3>
+        <nav class="flex flex-col gap-1">
+          <a href="index.html" class="footer-link">Home</a>
+          <a href="about.html" class="footer-link">About Us</a>
+          <a href="courses.html" class="footer-link">Our Courses</a>
+          <a href="contact.html" class="footer-link">Contact</a>
+          <a href="#testimonials" class="footer-link">Testimonials</a>
+        </nav>
+      </div>
+
+      <!-- Col 3: Quick Links -->
+      <div>
+        <h3 class="footer-heading">Quick Links</h3>
+        <nav class="flex flex-col gap-1">
+          <a href="courses.html" class="footer-link">CBSE Hindi</a>
+          <a href="courses.html" class="footer-link">ICSE Hindi</a>
+          <a href="courses.html" class="footer-link">Sanskrit Classes</a>
+          <a href="contact.html" class="footer-link">Free Trial Class</a>
+          <a href="https://www.youtube.com/@hindi_pathsalaa" target="_blank" class="footer-link">YouTube Channel</a>
+        </nav>
+      </div>
+
+      <!-- Col 4: Get In Touch -->
+      <div>
+        <h3 class="footer-heading">Get In Touch</h3>
+
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#4ade80" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <span>New Delhi, India</span>
+        </div>
+
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#4ade80" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <a href="tel:+919958735101" class="hover:text-green-400 transition-colors">+91 9958735101</a>
+        </div>
+
+        <div class="footer-contact-item">
+          <div class="footer-contact-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="#4ade80" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <a href="mailto:namita.mishra@hindipathshala.com" class="hover:text-green-400 transition-colors break-all text-sm">namita.mishra@hindipathshala.com</a>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/919958735101?text=Hello,%20I%20Want%20to%20Know%20About%20Your%20Courses!"
+           target="_blank"
+           class="inline-flex items-center gap-2 mt-2 px-5 py-2.5 rounded-full text-sm font-bold text-white
+                  bg-gradient-to-r from-green-500 to-green-600 hover:from-green-400 hover:to-green-500
+                  shadow-lg hover:shadow-green-500/30 transition-all duration-300 hover:-translate-y-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-4 h-4">
+            <path d="M20.52 3.48A11.8 11.8 0 0 0 12.01 0C5.38 0 .01 5.38 0 12c0 2.12.55 4.19 1.6 6.01L0 24l6.17-1.61A11.94 11.94 0 0 0 12 24c6.63 0 12-5.38 12-12 0-3.19-1.24-6.19-3.48-8.52z"/>
+          </svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="footer-divider mt-12 mb-6">
+  </div>
+
+  <!-- Footer Bottom Bar -->
+  <div class="footer-bottom py-5 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-[#7a8694]">
+      <p>Copyright © 2025 <span class="text-green-400 font-semibold">हिंदी पाठशाला</span> · All Rights Reserved.</p>
+      <div class="flex gap-6 flex-wrap justify-center">
+        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+        <a href="contact.html" class="hover:text-white transition-colors">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- ═══════════════════════════════════════════
      SCRIPTS: PARALLAX + SCROLL REVEAL + COUNTERS
